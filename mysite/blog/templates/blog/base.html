@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'blog/css/blog.css'%}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<body>
+    <aside>
+        <span class="logo"><i class="fas fa-user-secret"></i> The Guardian</span>
+
+        <ul>
+            <a href="{%url 'member:registration' %}"><li><i class="far fa-address-card"></i> Регистрация </li></a>
+            <a href="{%url 'member:login' %}"><li><i class="fas fa-clipboard-check"></i> Авторизация </li></a>
+            <a href="{%url 'blog:home' %}"><li><i class="fas fa-dice-d20"></i> Главная </li></a>
+            <a href="{%url 'news:news_home' %}"><li><i class="fas fa-book"></i> Публикации </li></a>
+            <a href="{%url 'news:create' %}"><li><i class="fas fa-feather-alt"></i> Создать публикацию</li></a>
+            <a href="{%url 'blog:info' %}"><li><i class="fab fa-whmcs"></i> О сайте</li></a>
+            <a href="{%url 'member:logout' %}"><li><i class="fas fa-reply-all"></i> Выход </li></a>
+        </ul>
+    </aside>
+    <main>
+            <div align="right">
+                <form action="{% url 'news:search_results' %}" method="get">
+                    <input name="q" type="text" placeholder="Поиск...">
+                </form>
+            </div>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
